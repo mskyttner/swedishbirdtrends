@@ -10,23 +10,19 @@ r_binary_packages:
 - knitr
 - dplyr
 - RColorBrewer
-- ggplot
 - tidyr
 - purrr
 - stringi
 - rvest
 - readr
 - readxl
-- purrr
+- ggplot2
 - crayon
 - leaflet
-- plotly
 - xts
 - lubridate
 - dygraphs
 - shiny
-- shinythemes
-- ggplot2
 deploy:
   provider: releases
   api_key:
