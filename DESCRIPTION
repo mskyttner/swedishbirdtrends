@@ -1,0 +1,44 @@
+Package: swedishbirdtrends
+Encoding: UTF-8
+Type: Package
+Title: Swedish Bird Trends Population Data And Diagrams
+Version: 0.0.0.9000
+License: AGPL
+Date: 2016-02-14
+Authors@R: person("Markus", "Skyttner", role = c("cre", "aut"), email = "markus.skyttner@nrm.se")
+URL: https://github.com/mskyttner/swedishbirdtrends
+BugReports: https://github.com/mskyttner/swedishbirdtrends/issues
+Description: This package provides bird populations trends data from Sweden 
+  in the form of indices datasets and diagrams.
+LazyData: true
+Depends:
+    R (>= 3.0)
+Imports:
+    stringi (>= 1.0),
+    stringr (>= 1.0.0),
+    dplyr (>= 0.4.0),
+    rvest (>= 0.3.1),
+    readr (>= 0.2.2),
+    readxl (>= 0.1.0),
+    httr (>= 1.1.0),
+    purrr (>= 0.2.1),
+    tidyr (>= 0.4.1),
+    crayon (>= 1.3.1),
+    leaflet (>= 1.0.0),
+    plotly (>= 2.4.4),
+    RColorBrewer (>= 1.1),
+    xts (>= 0.9),
+    lubridate (>= 1.5.0),
+    dygraphs (>= 0.7),
+    shiny (>= 0.13.0),
+    shinythemes (>= 1.0.1),
+    ggplot2 (>= 2.0.0),
+    ggthemes (>= 3.0.1),
+    DT (>= 0.1)
+Suggests:
+    devtools,
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1

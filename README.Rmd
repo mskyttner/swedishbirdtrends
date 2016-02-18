@@ -1,0 +1,56 @@
+---
+title: "swedishbirdtrends"
+author: ""
+date: "`r Sys.Date()`"
+output:
+  md_document:
+  variant: markdown_github
+---
+  
+[![Build Status](https://api.travis-ci.org/mskyttner/swedishbirdtrends.png)](https://travis-ci.org/mskyttner/swedishbirdtrends)
+
+`swedishbirdtrends` is a package that distributes Swedish bird population trend data (from 2016-02-16) from the Swedish Bird Inventory Facility <http://www.fageltaxering.lu.se> along with some interactive web user interfaces presenting this data. The package does not provide real-time, online bird monitoring data and therefore it can be used offline. 
+
+## Install
+
+The development version from Github
+
+```{r eval=FALSE}
+install.packages("devtools")
+devtools::install_github("mskyttner/swedishbirdtrends")
+```
+Then load the package
+
+```{r}
+suppressWarnings(suppressPackageStartupMessages(library(swedishbirdtrends)))
+```
+
+## Use Swedish bird population trend data
+
+Inspect the bundled data:
+
+```{r}
+
+data("birdtotals")
+data("birdtrends")
+
+birdtotals
+birdtrends
+
+```
+
+## Explore Swedish Bird Population trends interactively
+
+```{r eval=FALSE}
+runShinyApp("birdtrends")
+```
+
+## Compare Swedish Bird species longterm trends
+```{r eval=FALSE}
+runShinyApp("birdtotals")
+```
+
+## Meta
+
+* Please [report any issues or bugs](https://github.com/mskyttner/swedishbirdtrends/issues).
+* License: AGPL
