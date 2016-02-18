@@ -4,9 +4,10 @@ Status](https://api.travis-ci.org/mskyttner/swedishbirdtrends.png)](https://trav
 `swedishbirdtrends` is a package that distributes Swedish bird
 population trend data (from 2016-02-16) from the Swedish Bird Inventory
 Facility <http://www.fageltaxering.lu.se> along with some interactive
-web user interfaces presenting this data. The package does not provide
-real-time, online bird monitoring data and therefore it can be used
-offline.
+web user interfaces presenting this data. 
+
+The package does not provide real-time, online bird monitoring data and 
+therefore it can be used offline.
 
 Install
 -------
