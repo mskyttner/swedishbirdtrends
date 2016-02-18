@@ -6,23 +6,15 @@ before_install:
 - sudo apt-get update -qq
 - sudo apt-get install -y libv8-dev
 r_binary_packages:
+- ggplot2
+- RColorBrewer
+- stringr
 - testthat
 - knitr
-- dplyr
-- RColorBrewer
-- tidyr
-- purrr
-- stringi
-- rvest
-- readr
-- readxl
-- ggplot2
-- crayon
-- leaflet
 - xts
-- lubridate
-- dygraphs
-- shiny
+- xtable
+- dplyr
+- tidyr
 deploy:
   provider: releases
   api_key:
