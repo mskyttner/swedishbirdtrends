@@ -39,8 +39,10 @@ dy <- function(df, species, showgrid = FALSE) {
   grays <- brewer.pal(7, "Greys")
   light <- grays[2]
   dark <- grays[6]
+  # stringi::stri_escape_unicode("för")
+  # stringi::stri_escape_unicode("år")
   res <- 
-    dygraph(df, main = paste0("Populationsindex för ", species)) %>%
+    dygraph(df, main = paste0("Populationsindex f\\u00f6r", species)) %>%
     # , ylab = "Index"
     #dyRangeSelector() %>%
     dySeries("Sommar", strokeWidth = 2, color = red) %>%
@@ -52,7 +54,7 @@ dy <- function(df, species, showgrid = FALSE) {
       highlightSeriesBackgroundAlpha = 0.4) %>%
     dyOptions(drawGrid = showgrid) %>%   
     dyOptions(drawPoints = TRUE, pointSize = 3) %>%
-    #dyEvent("1998-01-01", "Basår för index", labelLoc = "bottom", color = grays[3]) %>%
+    #dyEvent("1998-01-01", "Bas\\u00e5r för index", labelLoc = "bottom", color = grays[3]) %>%
     dyLegend(width = 400)
   return (res)  
 }
