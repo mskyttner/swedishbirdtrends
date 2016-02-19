@@ -4,6 +4,7 @@ library(shinythemes)
 
 library(dygraphs)
 library(dplyr)
+library(tidyr)
 
 library(swedishbirdtrends)
 data(birdtrends)
