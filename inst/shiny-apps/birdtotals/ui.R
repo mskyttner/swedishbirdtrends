@@ -1,5 +1,5 @@
 shinyUI(fluidPage(
-  theme = shinytheme("spacelab"),
+  theme = shinythemes::shinytheme("spacelab"),
   tags$head(tags$link(rel="shortcut icon", href="favicon.ico")),
   #  titlePanel("Fågeltrender - Totaler"),
   sidebarLayout(

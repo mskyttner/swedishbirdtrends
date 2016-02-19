@@ -28,7 +28,7 @@ shinyServer(function(input, output) {
     cols <- RColorBrewer::brewer.pal(3, "Set1")[c(2, 1)]
     
     p <- 
-      plot_ly(df, x = YPctChg, y = Arthela, 
+      plotly::plot_ly(df, x = YPctChg, y = Arthela, 
         color = Direction, colors = cols,
         type = "bar", orientation = "h")
     

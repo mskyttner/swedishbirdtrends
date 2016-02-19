@@ -1,7 +1,3 @@
-library(shiny)
-library(shinythemes)
-library(dygraphs)
-
 shinyUI(fluidPage(theme = shinytheme("spacelab"),
   
 # titlePanel("Fågeltrender"),
