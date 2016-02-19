@@ -1,4 +1,3 @@
-
 .onAttach <- function(libname, pkgname) {
   
   # http://www.asciiset.com/figletserver.html (chunky)
@@ -33,6 +32,9 @@
     g(r(" ", 9)) %+%
     g("\n\nWant to silence this banner? Instead of 'library(swedishbirdtrends)', use:") %+%
     g("\nsuppressPackageStartupMessages(library(swedishbirdtrends))\n") %+%
+    g(r(" ", 9)) %+%
+    g("\nTo try out the bundled shiny web application examples:") %+%
+    g("\nrunShinyApp('birdtrends')\n") %+%
     g(r(" ", 4))
     
   suppressWarnings(packageStartupMessage(styled_banner))
