@@ -3,7 +3,7 @@ Encoding: UTF-8
 Type: Package
 Title: Swedish Bird Population Trends Data And Diagrams
 Version: 0.0.0.9004
-License: AGPL
+License: file LICENSE
 Date: 2016-02-14
 Authors@R: person("Markus", "Skyttner", role = c("cre", "aut"), email = "markus.skyttner@nrm.se")
 URL: https://github.com/mskyttner/swedishbirdtrends
