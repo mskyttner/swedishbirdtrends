@@ -1,2 +1,17 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.travis\.yml$
+cran-comments.md
+Makefile
+.git
+.gitignore
+inst/api
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.travis\.yml$
+^\.httr-oauth$
+^data-raw$
+^README\.Rmd$
+^README-*\.png$
+^CONDUCT\.md$
+^archive-tarball$
