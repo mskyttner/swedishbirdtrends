@@ -3,7 +3,9 @@
 #' @param species a character vector of species names
 #' @return a data frame dplyr style
 #' @export
-#' @import dplyr lubridate
+#' @import dplyr 
+#' @importFrom lubridate parse_date_time
+#' 
 turn <- function(df, species) {
   
   res <- df %>% 
@@ -21,7 +23,7 @@ turn <- function(df, species) {
     res$Standard <- NA
   if (!"Natt" %in% names(res))
     res$Natt <- NA
-  rownames(res) <- parse_date(paste0(res$Year, "-01-01"))
+  rownames(res) <- parse_date_time(paste0(res$Year, "-01-01"))
   return (res)  
 }
 

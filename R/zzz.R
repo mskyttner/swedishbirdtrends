@@ -1,3 +1,8 @@
+#' @importFrom crayon %+%
+#' @importFrom crayon green
+#' @importFrom crayon blue
+#' @importFrom crayon silver
+#' @importFrom stringr str_dup
 .onAttach <- function(libname, pkgname) {
   
   # http://www.asciiset.com/figletserver.html (chunky)

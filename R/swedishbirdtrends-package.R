@@ -15,7 +15,6 @@
 #' 
 #' http://www.cbs.nl/NR/rdonlyres/08046BFB-A8B4-49F8-A257-22BAE3606CC2/0/2000loglinearp033art.pdf
 #' 
-#' @import dplyr crayon httr tidyr stringi rvest readr readxl purrr leaflet xts lubridate dygraphs plotly shiny shinythemes ggplot2 ggthemes RColorBrewer xts lubridate DT stringr
 #' @name swedishbirdtrends-package
 #' @aliases swedishbirdtrends
 #' @docType package
