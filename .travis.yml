@@ -1,6 +1,17 @@
 language: R
 cache: packages
 sudo: false
+addons:
+  apt:
+    sources:
+      - r-packages-precise
+    packages:
+      - r-base-dev
+      - r-recommended
+env:
+  global:
+    - R_PKG="$(basename $TRAVIS_REPO_SLUG)"
+
 r: 3.2.3
 repos:
   CRAN: https://cloud.r-project.org
@@ -10,11 +21,13 @@ before_install:
   - tlmgr install index
 r_github_packages:
   - ropensci/plotly
+before_deploy:
+  - echo "Tags are deployed to GitHub Releases for $R_PKG"
 deploy:
   provider: releases
   api_key:
     secure: boO/KqVG4W9THKMbbh4Lzgs+X3qi7viUHpoU34QUijYUf6riGJpzWgCAS76NlMobMBxxbT1NhVpTUewO/WZqC7uhA5RTNHRs0bq87vWZO9e4jPkFI4NbYtvRmxe8Mted8i1x62zinK7xn5GJFrKjNdQHwUhMq1zdndIeCtfWVIONDUHIQNRMr6YNRKv5A+dQfD6bRwNAvDmd+EnQALccloyy6kJiyCS0OZL8l8yMOJrvokqyLOTUtgmPAlTmsQttoZrtvzTDyZ/uLE+ODMruvBAysuXm+nQHP/izhFSjLgBXuOuOR11bFcAsezj/vHEFv6D3TtlTFEzfwBbE+GACVDCuG+n5ax9WQWnQ6/6eShRgEt9rnttXSlC8uxPUxDhENK685PWZS/CYa4pFgBWZSz8ib039+JN9n5dsq0CgN3EKycgAIbH0p3YynG9cYzkkgYHlfi5WHhWyTOfT9/IMVFEcyqsr6Qhh8l3qgCrg1zKn9n7eLOqnqcWv+xum1QvarvhzqUxRmovBkD8ixg8NaFpL/d1KvqjCbMmovZ3weVrwO/YiZ6gmKatFSyJiAH9gqs7ewmCqTlA+LopHEPi85NcyA2PP4fnUdeo8eGWatkXYs/KTKOxouT1txYxh2d/Lc6FlSVtfldc6UWgEsmM4R6Bl6WE5jrbFwY6Y2Celpm4=
-  file: ! '*.tar.gz'
+  file: "${R_PKG}_*.tar.gz"
   skip_cleanup: true
   on:
     repo: mskyttner/swedishbirdtrends
