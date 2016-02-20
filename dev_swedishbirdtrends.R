@@ -1,10 +1,11 @@
 library("devtools")
-as.package("~/repos/birdtrends")
+as.package("~/repos/swedishbirdtrends")
 add_test_infrastructure()
 use_data_raw()
 use_github()
 use_data()
 use_news_md()
+use_readme_rmd()
 use_travis()
 use_vignette("birdy-vignette")
 
@@ -21,7 +22,7 @@ install()
 check()
 
 
-#dev_help("birdtrends")
+#dev_help("swedishbirdtrends")
 library(swedishbirdtrends)
 data(package = "swedishbirdtrends")
 data("birdtotals")
@@ -30,7 +31,6 @@ birdtrends
 birdtotals
 birduuids
 
-#http://127.0.0.1:5844/logo.png
 runApp()
 runShinyApp("birdtrends")
 runShinyApp("birdtotals")
@@ -38,3 +38,8 @@ runShinyApp("birdtotals")
 
 birdtotals
 runShinyApp("birdtrends")
+
+# resave data to compress even more
+library(tools)
+tools::checkRdaFiles(paths = "data")
+tools::resaveRdaFiles(paths = "data")
