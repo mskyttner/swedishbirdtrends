@@ -31,7 +31,9 @@ Depends:
     dygraphs (>= 0.7),
     imager (>= 0.15),
     xml2 (>= 0.1.2),
-    rvest (>= 0.3.1)
+    rvest (>= 0.3.1),
+    tufte (>= 0.2),
+    purrr (>= 0.2.1)
 Suggests:
     devtools,
     testthat,
