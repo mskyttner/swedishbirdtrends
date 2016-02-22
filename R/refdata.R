@@ -13,6 +13,7 @@
 #'   \item{Series}{Series - route used - Winter, Summer, Standard or Night}
 #'   \item{Suffix}{Suffix - qualifier - such as (S) for South, (N) for North, ob for not determined etc}
 #'   \item{Vernacular}{Vernacular or Popular name - the common name for the species, cleaned from any qualifier or suffix}
+#'   \item{Scientific}{Scientific name, the latin binomen}
 #' }
 #' @source \url{http://www.fageltaxering.lu.se/sites/default/files/files/Data/populationsindex.xls}
 "birdtrends"
@@ -32,6 +33,7 @@
 #'   \item{Series}{Which route was used for the inventory - Vinter, Sommar, Standard or Natt}
 #'   \item{Suffix}{The suffix contains some special abbreviations used in Arthela}
 #'   \item{Vernacular}{Vernacular or Popular name - the common name for the species, cleaned from any qualifier or suffix}
+#'   \item{Scientific}{Scientific name, the latin binomen}
 #' }
 #' @source \url{http://www.fageltaxering.lu.se/sites/default/files/files/Data/populationsindex.xls}
 "birdtotals"
@@ -46,6 +48,7 @@
 #' \describe{
 #'   \item{species_uuid}{unique identifier for a species used in The Naturalist}
 #'   \item{vernacular}{vernacular name in lower case}
+#'   \item{sciname}{Scientific name}
 #' }
 #' @source \url{http://naturforskaren.se}
 "birduuids"

@@ -8,6 +8,7 @@
 \describe{
   \item{species_uuid}{unique identifier for a species used in The Naturalist}
   \item{vernacular}{vernacular name in lower case}
+  \item{sciname}{Scientific name}
 }}
 \source{
 \url{http://naturforskaren.se}

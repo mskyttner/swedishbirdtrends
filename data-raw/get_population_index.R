@@ -270,3 +270,33 @@ gen_dox_dataset_rows(names(birdtotals))
 gen_dox_dataset_rows(names(birdtrends))
 gen_dox_dataset_rows(names(birduuids))
 
+# test
+
+library(dplyr)
+library(swedishbirdtrends)
+
+blacklist <- c(
+  "Korsnäbb","Vaktel","Igelkott", "Fälthare", "Rödräv", 
+  "Grävling", "Älg", "Rådjur", "Kronhjort", "Dovhjort",
+  "Vildkanin", "Vildsvin"
+)
+
+birdtrends <- 
+  birdtrends %>%
+  filter(!Vernacular %in% blacklist)
+
+birdtotals <- 
+  birdtotals %>%
+  filter(!Vernacular %in% blacklist)
+
+birduuids <- 
+  birduuids %>%
+  filter(!vernacular %in% tolower(blacklist)) %>%
+  filter(!is.na(species_uuid))
+
+library(devtools)
+use_data(birduuids, overwrite = TRUE)
+use_data(birdtotals, overwrite = TRUE)
+use_data(birdtrends, overwrite = TRUE)
+tools::resaveRdaFiles("data")
+tools::checkRdaFiles("data")

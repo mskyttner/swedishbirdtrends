@@ -14,6 +14,7 @@
   \item{Series}{Which route was used for the inventory - Vinter, Sommar, Standard or Natt}
   \item{Suffix}{The suffix contains some special abbreviations used in Arthela}
   \item{Vernacular}{Vernacular or Popular name - the common name for the species, cleaned from any qualifier or suffix}
+  \item{Scientific}{Scientific name, the latin binomen}
 }}
 \source{
 \url{http://www.fageltaxering.lu.se/sites/default/files/files/Data/populationsindex.xls}

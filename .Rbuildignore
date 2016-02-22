@@ -13,3 +13,4 @@ inst/api
 ^CONDUCT\.md$
 ^archive-tarball$
 ^README-.*\.png$
+^dev_*\.R$

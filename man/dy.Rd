@@ -4,12 +4,12 @@
 \alias{dy}
 \title{Create a dynamic line graph (dygraph) for a specific bird species}
 \usage{
-dy(df, species, showgrid = FALSE)
+dy(df, caption, showgrid = FALSE)
 }
 \arguments{
 \item{df}{a data frame structured like the bundled birdtrends dataset}
 
-\item{species}{a character vector of species names}
+\item{caption}{a character vector of species names}
 
 \item{showgrid}{boolean flag to indicate whether the graph should use gridlines}
 }

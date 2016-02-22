@@ -2,7 +2,7 @@ Package: swedishbirdtrends
 Encoding: UTF-8
 Type: Package
 Title: Swedish Bird Population Trends Data And Diagrams
-Version: 0.0.0.9004
+Version: 0.0.0.9005
 License: file LICENSE
 Date: 2016-02-14
 Authors@R: person("Markus", "Skyttner", role = c("cre", "aut"), email = "markus.skyttner@nrm.se")
@@ -21,6 +21,7 @@ Imports:
     lubridate (>= 1.5.0)
 Depends:
     dplyr (>= 0.4.0),
+    tidyr (>= 0.4.1),
     shiny (>= 0.13.0),
     shinythemes (>= 1.0.1),
     ggplot2 (>= 2.0.0),
@@ -28,6 +29,9 @@ Depends:
     DT (>= 0.1),
     plotly (>= 2.4.4),
     dygraphs (>= 0.7),
+    imager (>= 0.15),
+    xml2 (>= 0.1.2),
+    rvest (>= 0.3.1)
 Suggests:
     devtools,
     testthat,

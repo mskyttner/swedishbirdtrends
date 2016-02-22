@@ -21,7 +21,7 @@
                                                                 
 "
 
-  `%+%` <- crayon::`%+%`
+  #`%+%` <- crayon::`%+%`
   r <- stringr::str_dup
 
   g <- crayon::green $ bgWhite

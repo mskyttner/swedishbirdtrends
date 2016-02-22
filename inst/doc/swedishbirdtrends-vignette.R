@@ -74,12 +74,12 @@ plot_l <-
 plot_w
 plot_l
 
-## ---- fig.show='hold', warning=FALSE-------------------------------------
+## ---- fig.show='hold', fig.width=7, warning=FALSE------------------------
 
-storskarv <- 
+glada <- 
   birdtrends %>% 
   filter(Series == "Vinter") %>% 
-  filter(Arthela == "Storskarv") %>% 
+  filter(Arthela == "Glada") %>% 
   select(Year, Measure, Series)
 
 koltrast <- 
@@ -88,21 +88,39 @@ koltrast <-
   filter(Arthela == "Koltrast") %>% 
   select(Year, Measure, Series)
 
+red <- RColorBrewer::brewer.pal(3, "PuRd")[3]
+
 plot_trend <- function(df, title) {
   ggplot(df) + 
     aes(x = Year, y = Measure, group = Series) + 
     scale_x_discrete(breaks = c(1975, 1985, 1998, 2005, 2015)) +
-    ylab("Index") + ggtitle(title) +
-    geom_line(size = 1.5) +
+    ylab("Index") + xlab("År") + ggtitle(title) +
+    geom_point(size = 1.2) +
+    #geom_line() +
+    geom_smooth(method = "loess", aes(group = Series, color = red)) +
+    guides(colour = FALSE, size = FALSE) +
+    #scale_color_few() +
     theme_solarized()
-  
 }
 
-plot_trend(storskarv, "Storskarv")
-plot_trend(koltrast, "Koltrast")
+plot_trend(glada, "Glada, Vinterrutt") 
+plot_trend(koltrast, "Koltrast, Vinterrutt")
 
+
+## ---- fig.width=7, warning=FALSE-----------------------------------------
+
+plot_sbt_static("Svarthätta")
+plot_sbt_static("Svarthätta", loess = TRUE)
+
+plot_sbt_static("Brushane", loess = TRUE)
+plot_sbt_static("Brushane", showlegend = FALSE)
+
+## ---- fig.width=7--------------------------------------------------------
+plot_sbt_dy("Brushane")
+plot_sbt_dy("Svarthätta")
 
 ## ---- fig.width=7,  eval=FALSE-------------------------------------------
+#  # use this to launch the shiny web app examples
 #  runShinyApp("birdtrends")
 #  runShinyApp("birdtotals")
 

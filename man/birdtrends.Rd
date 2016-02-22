@@ -14,6 +14,7 @@
   \item{Series}{Series - route used - Winter, Summer, Standard or Night}
   \item{Suffix}{Suffix - qualifier - such as (S) for South, (N) for North, ob for not determined etc}
   \item{Vernacular}{Vernacular or Popular name - the common name for the species, cleaned from any qualifier or suffix}
+  \item{Scientific}{Scientific name, the latin binomen}
 }}
 \source{
 \url{http://www.fageltaxering.lu.se/sites/default/files/files/Data/populationsindex.xls}

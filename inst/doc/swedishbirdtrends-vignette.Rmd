@@ -144,14 +144,14 @@ plot_l
 
 ## Static trend plot
 
-This is a static trend plot for "Storskarv":
+This are population trend plots for "Glada" and "Koltrast":
 
-```{r, fig.show='hold', warning=FALSE}
+```{r, fig.show='hold', fig.width=7, warning=FALSE}
 
-storskarv <- 
+glada <- 
   birdtrends %>% 
   filter(Series == "Vinter") %>% 
-  filter(Arthela == "Storskarv") %>% 
+  filter(Arthela == "Glada") %>% 
   select(Year, Measure, Series)
 
 koltrast <- 
@@ -160,26 +160,50 @@ koltrast <-
   filter(Arthela == "Koltrast") %>% 
   select(Year, Measure, Series)
 
+red <- RColorBrewer::brewer.pal(3, "PuRd")[3]
+
 plot_trend <- function(df, title) {
   ggplot(df) + 
     aes(x = Year, y = Measure, group = Series) + 
     scale_x_discrete(breaks = c(1975, 1985, 1998, 2005, 2015)) +
-    ylab("Index") + ggtitle(title) +
-    geom_line(size = 1.5) +
+    ylab("Index") + xlab("År") + ggtitle(title) +
+    geom_point(size = 1.2) +
+    #geom_line() +
+    geom_smooth(method = "loess", aes(group = Series, color = red)) +
+    guides(colour = FALSE, size = FALSE) +
+    #scale_color_few() +
     theme_solarized()
-  
 }
 
-plot_trend(storskarv, "Storskarv")
-plot_trend(koltrast, "Koltrast")
+plot_trend(glada, "Glada, Vinterrutt") 
+plot_trend(koltrast, "Koltrast, Vinterrutt")
 
 ```
 
-## Plotting interactively
+For convenience, a function is provided that provides static trend plots:
+
+```{r, fig.width=7, warning=FALSE}
+
+plot_sbt_static("Svarthätta")
+plot_sbt_static("Svarthätta", loess = TRUE)
+
+plot_sbt_static("Brushane", loess = TRUE)
+plot_sbt_static("Brushane", showlegend = FALSE)
+```
+
+Another function provides dynamic trend plots:
+
+```{r, fig.width=7}
+plot_sbt_dy("Brushane")
+plot_sbt_dy("Svarthätta")
+```
+
+## Shiny web apps
 
 It is possible to provide interactive web applications as part of the package using `shiny`. To see a couple of examples of this using the datasets bundled in this package, use the following approach:
 
 ```{r, fig.width=7,  eval=FALSE}
+# use this to launch the shiny web app examples
 runShinyApp("birdtrends")
 runShinyApp("birdtotals")
 ```

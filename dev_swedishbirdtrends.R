@@ -43,3 +43,14 @@ runShinyApp("birdtrends")
 library(tools)
 tools::checkRdaFiles(paths = "data")
 tools::resaveRdaFiles(paths = "data")
+
+# Generate example reports
+
+rmarkdown::render("vignettes/sbt-species-vignette.Rmd", 
+  params = list(species = "Koltrast"), output_file = "Koltrast.html")
+browseURL("vignettes/Koltrast.html")
+
+rmarkdown::render("vignettes/sbt-species-vignette.Rmd", 
+  params = list(species = "Vigg"), output_file = "test.html")
+browseURL("vignettes/test.html")
+
