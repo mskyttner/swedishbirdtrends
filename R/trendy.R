@@ -119,9 +119,10 @@ plot_sbt_static <- function(species, df = birdtrends,
     distinct
   
   rgb <- brewer.pal(3, "Set1")
-  red <- rgb[1]
-  blue <- rgb[2]
+  red <- "#fb8072" # rgb[1]
+  blue <- "#74a9cf"
   green <- rgb[3]
+  brown <- "#a6761d"
   grays <- brewer.pal(7, "Greys")
   light <- grays[2]
   dark <- grays[6]
@@ -129,21 +130,30 @@ plot_sbt_static <- function(species, df = birdtrends,
   caption <- paste0("Populationstrend för ", species, ", ",
     trimws(binomen$Scientific[1]))
 
-  red <- RColorBrewer::brewer.pal(3, "PuRd")[3]
+  caption <- ""
   
+  red <- "#de2d26" #brewer.pal(3, "PuRd")[3]
+  
+  brk <- 1975:2020
+  lbl <- rep("", length(brk))
+  names(lbl) <- as.character(1975:2020)
+  labs <- c(1975, 1998, 2010) 
+  lbl[as.character(labs)] <- labs
+
   p <- 
     ggplot(df) + 
     aes(x = Year, y = Measure, group = Series, colour = Series) + 
-    scale_x_discrete(breaks = c(1975, 1985, 1998, 2005, 2015, 2020)) +
-    ylab("Index") + xlab("") + ggtitle(caption) +
+    scale_x_discrete(labels = lbl, breaks = brk) +
+    ylab("") + xlab("") + ggtitle(caption) +
     geom_point(size = 1.2)
   
   if (loess) p <- p + geom_smooth(method = "loess")
   if (!loess) p <- p + geom_line()
   if (!showlegend) p <- p + guides(colour = FALSE)
   
-  p + scale_color_manual(name = "Rutt", values = 
-      c("Sommar" = red, "Vinter" = blue, "Standard" = green, "Natt" = dark)) +
+  p + scale_color_manual(name = "Rutt", 
+      limits = c("Sommar", "Vinter", "Natt", "Standard"),
+      values = c("Sommar" = red, "Vinter" = blue, "Natt" = brown, "Standard" = dark)) +
     guides(size = FALSE) + theme
   
 }

@@ -10,7 +10,9 @@
 get_nf_media_urls <- function(sciname) {
   url <- paste0("https://dina-web.net/naturalist/api/v1/spm/get/taxon/latin/",
     URLencode(sciname), ".xml?locale=sv_SE")
-  read_xml(url) %>% xml_nodes(xpath = "//media/url") %>% xml_text
+  read_xml(url) %>% 
+    xml_nodes(xpath = "//media/mime[contains(., 'image')]/../url") %>% 
+    xml_text
 }
 
 #' Plot image from url
@@ -26,6 +28,7 @@ get_nf_media_urls <- function(sciname) {
 #' @examples 
 #' plot_image_url(get_nf_media_urls("Turdus merula")[1])
 plot_image_url <- function(url, width = 120L) {
+  # sudo apt-get install graphicsmagick
   im <- load.image(url)  
   a <- height(im) / width(im)
   im <- resize(im, interpolation_type = 2, size_x = width, size_y = round(a * width))

@@ -1,9 +1,9 @@
 ---
-title: "Fågelpopulationstrendrapport"
+title: ""
 author: ""
 date: ""
 params:
-  species: Koltrast
+  species: Rödhake
 output:
   tufte::tufte_html: default
 vignette: >
@@ -15,6 +15,7 @@ vignette: >
 
 ```{r, message=FALSE, warning=FALSE, results='asis', echo=FALSE, fig.width=7}
 library(swedishbirdtrends)
+library(tufte)
 species <- params$species
 uuid <- birduuids %>% filter(vernacular == tolower(species))
 url <- paste0("http://naturforskaren.se/species/", uuid$species_uuid)
@@ -22,64 +23,105 @@ binomen <- uuid$sciname
 sft <- "http://www.fageltaxering.lu.se"
 totals <- 
   birdtotals %>% 
-  filter(Vernacular == species) #%>% 
-#  dplyr::select(`%/År` = YPctChg, Signifikansnivå =	Significance, Rutt =	Series)
-chg <- paste0(sprintf("%+2.1f - %+2.1f", min(totals$YPctChg), max(totals$YPctChg)), "%")
+  filter(Vernacular == species) # %>% 
+plate <- totals %>%
+  dplyr::select(Program = Series, Signifikansnivå =	Significance,
+    `%/År` = YPctChg, Individer = Ind) %>%
+  mutate(Individer = floor(Individer))
+chg <- paste0(sprintf("%+2.1f %s - %+2.1f %s", 
+  min(totals$YPctChg), "%", max(totals$YPctChg), "%"))
 images <- get_nf_media_urls(binomen)
 map <- paste0("https://dina-web.net/naturalist/map/getsmall/", uuid$species_uuid, "/raster.png")
 ```
 
-```{r, fig.margin = TRUE, echo=FALSE, fig.cap=binomen}
+# Populationstrend för `r tolower(species)`
+
+*Läs mer om arten [`r tolower(species)` på Naturforskaren](`r url`).* 
+
+```{r, fig.margin = TRUE, echo=FALSE, fig.cap=paste0(species, " (*", binomen, "*)"), cache=TRUE}
 if (length(images) >= 1) plot_image_url(images[1], 240)
 ```
 
-```{r, echo=FALSE}
-if (length(images) >= 2) plot_image_url(images[2], 240)
-```
-
-# `r species`, *`r binomen`*
-
-För `r species` ligger den årliga trendförändringen runt `r chg` när samtliga rutter beaktas.
-
-```{r, message=FALSE, warning=FALSE, results='asis', echo=FALSE}
-#knitr::kable(totals, caption = 'Trendförändring')
-```
+`r newthought("Så här har populationsindex")` för `r tolower(species)`, *`r binomen`*, utvecklats över tiden i Sverige. 
 
 ```{r, fig.margin=TRUE, message=FALSE, warning=FALSE, results='asis', echo=FALSE}
 #plot_image_url(map, 240)
 ```
 
-
-## Sammantaget - alla rutter
-
-```{r, message=FALSE, warning=FALSE, results='asis', echo=FALSE}
-plot_sbt_static(species, loess = TRUE, showlegend = TRUE, theme = theme_solarized())
+```{marginfigure}
+För varje art finns data från upp till *fyra olika inventeringsprogram* eller rutter: 
 ```
 
-## Enbart längs vinterrutten
-
-```{r, message=FALSE, warning=FALSE, results='asis', echo=FALSE, fig.width=7}
-plot_sbt_static(species, loess = TRUE, series = "Vinter", showlegend = FALSE, theme = theme_solarized())
+```{marginfigure}
+"Sommar" avser data för häckande fåglar sedan 1975, för i huvudsak södra Sverige.
 ```
 
-## Enbart längs sommarrutten
-
-```{r, message=FALSE, warning=FALSE, results='asis', echo=FALSE, fig.width=7}
-plot_sbt_static(species, loess = TRUE, series = "Sommar", showlegend = FALSE, theme = theme_solarized_2())
+```{marginfigure}
+"Vinter" avser data för övervintrande fåglar sedan vintern 1975/1976, för i huvudsak södra Sverige.
 ```
 
-## Interaktivt diagram
-
-Zooma genom att klicka och dra antingen i höjdled eller åt sidan, återställ genom att dubbelklicka:
-
-```{r, message=FALSE, warning=FALSE, results='asis', echo=FALSE, fig.fullwidth=TRUE}
-if ("Measure" %in% names(species)) plot_sbt_dy(species)
+```{marginfigure}
+"Natt" avser data för häckande fåglar sedan 2010, räknade under sen kväll och natt. 
 ```
+
+```{marginfigure}
+"Standard" avser data för häckande fåglar sedan 1998. Programmet täcker hela Sverige  på ett representativt sätt och är det program som för de flesta arter bäst beskriver hur det går för en art i Sverige.
+```
+
+```{r, message=FALSE, warning=FALSE, results='asis', echo=FALSE, cache = TRUE, fig.height=4}
+plot_sbt_static(species, showlegend = TRUE, theme = theme_tufte())
+```
+
+`r species` har en genomsnittlig årlig trendförändring i intervallet `r chg` när inventeringar från samtliga program beaktas. 
+
+```{r, echo=FALSE}
+knitr::kable(plate)
+#knitr::kable(plate, caption = 'Sammanfattade trendmått per inventeringsprogram')
+```
+
+Denna figur visar en trendanalys av data från standardrutterna.
+
+```{r, message=FALSE, warning=FALSE, results='asis', echo=FALSE, cache = TRUE, fig.height=4}
+plot_sbt_static(species, series=c("Standard"), 
+  showlegend = FALSE, loess = TRUE, theme = theme_tufte())
+```
+
+Standardrutterna täcker hela Sverige och ger för de flesta arterna den bästa beskrivningen av hur det går för arten i Sverige. 
 
 ## Källa
 
-[^1]: `r sft`
-[^2]: `r url`
+*Denna rapport genererades `r Sys.Date()`.*
 
-*Denna rapport genererades `r Sys.Date()`. Populationstrenden kommer från Svensk Fågeltaxering[^1]. Läs mer om `r species` på [Naturforskaren](`r url`)[^2].*
+```{marginfigure}
+![Svensk Fågeltaxering](http://www.fageltaxering.lu.se/sites/default/files/fageltaxering-logo2x.png "http://www.fageltaxering.lu.se")
+```
 
+Populationstrenden kommer från [Svensk Fågeltaxering](`r sft`), ett nationellt projekt som drivs vid Lunds universitet, som en del i Naturvårdsverkets och länsstyrelsernas miljöövervakningsprogram.  
+
+Där finns mer detaljerad information om [hur kurvorna beräknats och tolkas](http://www.fageltaxering.lu.se/resultat/trender).
+ 
+## Att tyda diagrammet
+
+Eftersom inte alla fåglar i Sverige räknats, utan bara ett stickprov, så representeras antalet fåglar av ett index.
+
+### Basår och att tyda indexvärden
+
+För "sommar", "vinter" och "standard" har indexvärdet satts till 1 för 1998. En linje binder ihop indexvärdena för de olika åren. Kurvorna för dessa tre program sammanfaller alltså i basåret 1998. För "natt" är det startåret 2010 som är basåret med index 1. 
+
+Om index för ett år är 2, fanns det detta år dubbelt så många individer som basåret. Om index är 0,5, fanns det hälften så många individer som basåret. För några få arter är basåret ett annat än de som anges ovan.
+
+### Avvikelser och att tyda den långsiktiga trenden
+
+Basårets värde kan av ren slump ha varit ovanligt högt eller lågt och därför skall man inte lägga för stor vikt vid huruvida värden före och efter basåret ligger över eller under 1. Det viktiga är istället vilka långsiktiga trender som finns i kurvan. 
+
+Enskilda års värden ska tolkas med försiktighet. Speciellt för arter som ses i lägre antal och på få rutter kan såväl väder som rena tillfälligheter ha stor inverkan på vad som noteras under ett enskilt år. 
+
+Generellt kan man säga att ju fler fåglar som setts, desto säkrare är trenden. Därför skall man tolka siffrorna med försiktighet om bara få fåglar setts, eller om signifikansnivån är låg. 
+
+Samtidigt är det så att eftersom räkningarna görs på ett systematiskt och standardiserat sätt ger även små stickprov säkra trender.
+
+### Att tyda trendanalyskurvan
+
+I den nedre figuren använder vi oss av LOESS, en statistisk teknik (lokal regression) för att hitta trender i data. Den grå zonen anger osäkerheten kring den framräknade kurvan (95 % konfidensintervall). 
+
+Vi använder standardinställningar för att beräkna LOESS-kurvan. För vissa arter kan det finnas särskilda omständigheter som gör en sådan standardanalys mindre tillförlitlig.

@@ -6,6 +6,12 @@ For more fine-grained list of changes or to report a bug, consult
 * [The issues log](https://github.com/mskyttner/swedishbirdtrends/issues)
 * [The commit log](https://github.com/mskyttner/swedishbirdtrends/master)
 
+## v0.0.0.9006
+
+* Retrieve only images (not audio media) from The Naturalist
+* New layout for Species trend report following layout feedback
+* Add table of contents report
+
 ## v0.0.0.9005
 
 * Add loess smoother to static trend line displays, documented in vignette
