@@ -18,6 +18,6 @@ a plot with the image
 Plot image from url
 }
 \examples{
-plot_image_url(get_nf_media_urls("Turdus merula")[1])
+plot_image_url(get_nf_media_urls("Erithacus rubecula")[1])
 }
 

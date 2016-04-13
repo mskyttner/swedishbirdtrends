@@ -16,6 +16,6 @@ a character vector with image urls for the species
 Retrieve image url from The Naturalist given latin binomen for a bird
 }
 \examples{
-get_nf_media_urls("Turdus merula")
+get_nf_media_urls("Erithacus rubecula")
 }
 

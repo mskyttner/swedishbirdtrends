@@ -6,7 +6,7 @@
 #' @importFrom xml2 xml_text
 #' @export
 #' @examples 
-#' get_nf_media_urls("Turdus merula")
+#' get_nf_media_urls("Erithacus rubecula")
 get_nf_media_urls <- function(sciname) {
   url <- paste0("https://dina-web.net/naturalist/api/v1/spm/get/taxon/latin/",
     URLencode(sciname), ".xml?locale=sv_SE")
@@ -26,9 +26,13 @@ get_nf_media_urls <- function(sciname) {
 #' @importFrom grid grid.raster
 #' @export
 #' @examples 
-#' plot_image_url(get_nf_media_urls("Turdus merula")[1])
+#' plot_image_url(get_nf_media_urls("Erithacus rubecula")[1])
 plot_image_url <- function(url, width = 120L) {
   # sudo apt-get install graphicsmagick
+  if (is.na(url)) {
+    message("Nothing to plot")
+    return (FALSE)
+  }
   im <- load.image(url)  
   a <- height(im) / width(im)
   im <- resize(im, interpolation_type = 2, size_x = width, size_y = round(a * width))
